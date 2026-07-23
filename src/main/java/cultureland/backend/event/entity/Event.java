@@ -1,5 +1,7 @@
 package cultureland.backend.event.entity;
 
+import cultureland.backend.category.entity.Category;
+import cultureland.backend.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,7 +44,7 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    public static Event(Member memberId, Category categoryId, String title, String description, String location, int price, LocalDateTime startDate, LocalDateTime endDate){
+    public static Event create(Member memberId, Category categoryId, String title, String description, String location, int price, LocalDateTime startDate, LocalDateTime endDate){
         return Event.builder()
                 .memberId(memberId)
                 .categoryId(categoryId)
