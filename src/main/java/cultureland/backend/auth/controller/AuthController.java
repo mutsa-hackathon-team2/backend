@@ -2,6 +2,7 @@ package cultureland.backend.auth.controller;
 
 import cultureland.backend.auth.dto.LoginResponse;
 import cultureland.backend.auth.service.AuthService;
+import cultureland.backend.global.apiPayload.ApiResponse;
 import cultureland.backend.global.session.SessionConst;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Tag(name = "Auth", description = "카카오 로그인 인증 API")
 @Controller
@@ -47,5 +49,25 @@ public class AuthController {
         );
 
         return "redirect:" + frontendRedirectUri;
+    }
+
+    @Operation(summary = "로그인 상태 확인")
+    @ResponseBody
+    @GetMapping("/session")
+    public ApiResponse<Boolean> checkSession(
+            HttpServletRequest request
+    ) {
+        HttpSession session = request.getSession(false);
+
+        boolean loggedIn =
+                session != null
+                        && session.getAttribute(
+                        SessionConst.LOGIN_MEMBER_ID
+                ) != null;
+
+        return ApiResponse.onSuccess(
+                "로그인 상태를 확인했습니다.",
+                loggedIn
+        );
     }
 }

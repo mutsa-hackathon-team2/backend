@@ -1,5 +1,7 @@
 package cultureland.backend.member.service;
 
+import cultureland.backend.global.apiPayload.code.GeneralErrorCode;
+import cultureland.backend.global.apiPayload.exception.GeneralException;
 import cultureland.backend.member.entity.Member;
 import cultureland.backend.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,15 @@ public class MemberService {
                 .orElseGet(() ->
                         memberRepository.save(
                                 Member.create(kakaoId, nickname)
+                        )
+                );
+    }
+
+    public Member findMemberById(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() ->
+                        new GeneralException(
+                                GeneralErrorCode.UNAUTHORIZED
                         )
                 );
     }

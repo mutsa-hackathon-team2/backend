@@ -28,4 +28,11 @@ public class AuthService {
         return LoginResponse.from(member);
     }
 
+    @Transactional(readOnly = true)
+    public LoginResponse getLoginMember(Long memberId) {
+        Member member = memberService.findMemberById(memberId);
+
+        return LoginResponse.from(member);
+    }
+
 }
