@@ -24,7 +24,7 @@ public class KakaoService {
     @Value("${kakao.redirect-uri}")
     private String redirectUri;
 
-    public KakaoTokenResponse getAccessToken(String code) {
+    public String getAccessToken(String code) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(
                 MediaType.APPLICATION_FORM_URLENCODED

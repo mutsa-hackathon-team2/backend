@@ -20,6 +20,9 @@ kakao:
   client-id: ${KAKAO_CLIENT_ID}
   redirect-uri: ${KAKAO_REDIRECT_URI}
 
+frontend:
+  redirect-uri: ${FRONTEND_REDIRECT_URI:http://localhost:5173}
+
 server:
   servlet:
     session:

@@ -24,7 +24,7 @@ public class Event {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
-    private Category categoryId;
+    private Category category;
 
     @Column(nullable = false)
     private String title;
@@ -44,10 +44,10 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    public static Event create(Member memberId, Category categoryId, String title, String description, String location, int price, LocalDateTime startDate, LocalDateTime endDate){
+    public static Event create(Member memberId, Category category, String title, String description, String location, int price, LocalDateTime startDate, LocalDateTime endDate){
         return Event.builder()
                 .memberId(memberId)
-                .categoryId(categoryId)
+                .category(category)
                 .title(title)
                 .description(description)
                 .location(location)
