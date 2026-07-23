@@ -16,6 +16,7 @@ public class EventSummaryResponse {
     private String categoryName;
     private Integer price;
     private Long dDay;
+    private String posterUrl;
 
     public static EventSummaryResponse from(Event event) {
         return EventSummaryResponse.builder()
@@ -24,6 +25,7 @@ public class EventSummaryResponse {
                 .categoryName(event.getCategory().getName())
                 .price(event.getPrice())
                 .dDay(calculateDDay(event.getStartDate().toLocalDate()))
+                .posterUrl(event.getPosterUrl())
                 .build();
     }
 

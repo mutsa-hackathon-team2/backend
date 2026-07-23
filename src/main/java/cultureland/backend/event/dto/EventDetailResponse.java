@@ -18,6 +18,7 @@ public class EventDetailResponse {
     private String categoryName;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private String posterUrl;
 
     public static EventDetailResponse from(Event event) {
         return EventDetailResponse.builder()
@@ -29,6 +30,7 @@ public class EventDetailResponse {
                 .categoryName(event.getCategory().getName())
                 .startDate(event.getStartDate())
                 .endDate(event.getEndDate())
+                .posterUrl(event.getPosterUrl())
                 .build();
     }
 

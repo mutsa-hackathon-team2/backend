@@ -15,7 +15,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -41,10 +43,11 @@ public class EventController {
         return ApiResponse.onSuccess("행사 상세 조회에 성공했습니다.", eventService.getEventDetail(eventId));
     }
 
-    @Operation(summary = "행사 등록", description = "로그인한 회원이 새 행사를 등록합니다.")
-    @PostMapping
+    @Operation(summary = "행사 등록", description = "로그인한 회원이 포스터와 행사를 등록합니다.")
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<EventDetailResponse> createEvent(
-            @RequestBody @Valid EventCreateRequest request,
+            @RequestPart("request") @Valid EventCreateRequest request,
+            @RequestPart("poster") MultipartFile poster,
             HttpServletRequest httpRequest
     ) {
         HttpSession session = httpRequest.getSession(false);
@@ -63,7 +66,7 @@ public class EventController {
 
         return ApiResponse.onSuccess(
                 "행사 등록에 성공했습니다.",
-                eventService.createEvent(memberId, request)
+                eventService.createEvent(memberId, request, poster)
         );
     }
 }

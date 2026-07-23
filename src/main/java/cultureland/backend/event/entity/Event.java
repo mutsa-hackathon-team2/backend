@@ -19,11 +19,11 @@ public class Event {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
-    private Member memberId;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
     @Column(nullable = false)
@@ -44,9 +44,22 @@ public class Event {
     @Column(nullable = false)
     private LocalDateTime endDate;
 
-    public static Event create(Member memberId, Category category, String title, String description, String location, int price, LocalDateTime startDate, LocalDateTime endDate){
+    @Column(name = "poster_url", length = 500)
+    private String posterUrl;
+
+    public static Event create(
+            Member member,
+            Category category,
+            String title,
+            String description,
+            String location,
+            int price,
+            LocalDateTime startDate,
+            LocalDateTime endDate,
+            String posterUrl
+    ) {
         return Event.builder()
-                .memberId(memberId)
+                .member(member)
                 .category(category)
                 .title(title)
                 .description(description)
@@ -54,6 +67,7 @@ public class Event {
                 .price(price)
                 .startDate(startDate)
                 .endDate(endDate)
+                .posterUrl(posterUrl)
                 .build();
     }
 
