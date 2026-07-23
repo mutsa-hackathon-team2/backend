@@ -12,7 +12,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/api/**")
                 .allowedOrigins(
                         "http://localhost:5173",
-                        "https://frontend-yw8e.vercel.app"
+                        "https://frontend-yw8e.vercel.app",
+                        "https://mutsa-hackathon-team2.store",
+                        "https://www.mutsa-hackathon-team2.store"
                 )
                 .allowedMethods(
                         "GET",
