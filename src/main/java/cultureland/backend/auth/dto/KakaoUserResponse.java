@@ -3,8 +3,6 @@ package cultureland.backend.auth.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Properties;
-
 @Getter
 @NoArgsConstructor
 public class KakaoUserResponse {
