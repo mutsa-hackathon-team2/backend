@@ -50,5 +50,7 @@ jobs:
               -e KAKAO_CLIENT_ID="${{ secrets.KAKAO_CLIENT_ID }}" \
               -e KAKAO_REDIRECT_URI="${{ secrets.KAKAO_REDIRECT_URI }}" \
               -e FRONTEND_REDIRECT_URI="${{ secrets.FRONTEND_REDIRECT_URI }}" \
+              -e AWS_REGION="${{ secrets.AWS_REGION }}" \
+              -e S3_BUCKET="${{ secrets.S3_BUCKET }}" \
               ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
             sudo docker image prune -f
