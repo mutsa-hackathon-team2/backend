@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(GeneralException.class)
     public ResponseEntity<ApiResponse<Void>> handleMemberException(
             GeneralException e
     ) {
