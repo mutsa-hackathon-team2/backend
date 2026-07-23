@@ -1,6 +1,6 @@
-package cultureland.backend.global.exception;
+package cultureland.backend.global.apiPayload.exception;
 
-import cultureland.backend.global.code.BaseErrorCode;
+import cultureland.backend.global.apiPayload.code.BaseErrorCode;
 import lombok.Getter;
 
 @Getter

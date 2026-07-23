@@ -1,4 +1,4 @@
-package cultureland.backend.global.code;
+package cultureland.backend.global.apiPayload.code;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

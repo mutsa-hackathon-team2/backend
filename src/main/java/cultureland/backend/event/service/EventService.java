@@ -5,7 +5,7 @@ import cultureland.backend.event.dto.EventSummaryResponse;
 import cultureland.backend.event.entity.Event;
 import cultureland.backend.event.exception.EventErrorCode;
 import cultureland.backend.event.repository.EventRepository;
-import cultureland.backend.global.exception.GeneralException;
+import cultureland.backend.global.apiPayload.exception.GeneralException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

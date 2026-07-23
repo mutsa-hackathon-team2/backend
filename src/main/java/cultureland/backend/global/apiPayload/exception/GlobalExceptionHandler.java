@@ -1,8 +1,8 @@
-package cultureland.backend.global.exception;
+package cultureland.backend.global.apiPayload.exception;
 
 import cultureland.backend.global.apiPayload.ApiResponse;
-import cultureland.backend.global.code.BaseErrorCode;
-import cultureland.backend.global.code.GeneralErrorCode;
+import cultureland.backend.global.apiPayload.code.BaseErrorCode;
+import cultureland.backend.global.apiPayload.code.GeneralErrorCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
