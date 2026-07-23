@@ -1,6 +1,10 @@
 spring:
   application:
     name: backend
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
 
   datasource:
     url: ${DB_URL}
@@ -15,6 +19,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+aws:
+  region: ${AWS_REGION:ap-northeast-2}
+  s3:
+    bucket: ${S3_BUCKET}
+
 
 kakao:
   client-id: ${KAKAO_CLIENT_ID}

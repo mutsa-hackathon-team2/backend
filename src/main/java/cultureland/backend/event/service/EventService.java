@@ -9,11 +9,13 @@ import cultureland.backend.event.entity.Event;
 import cultureland.backend.event.exception.EventErrorCode;
 import cultureland.backend.event.repository.EventRepository;
 import cultureland.backend.global.apiPayload.exception.GeneralException;
+import cultureland.backend.global.s3.S3Service;
 import cultureland.backend.member.entity.Member;
 import cultureland.backend.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ public class EventService {
     private final EventRepository eventRepository;
     private final MemberRepository memberRepository;
     private final CategoryRepository categoryRepository;
+    private final S3Service s3Service;
 
     public List<EventSummaryResponse> getEvents(Long categoryId) {
         List<Event> events = (categoryId == null)
@@ -44,12 +47,22 @@ public class EventService {
     }
 
     @Transactional
-    public EventDetailResponse createEvent(Long memberId, EventCreateRequest request) {
+    public EventDetailResponse createEvent(
+            Long memberId,
+            EventCreateRequest request,
+            MultipartFile poster
+    ) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new GeneralException(EventErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(() ->
+                        new GeneralException(EventErrorCode.MEMBER_NOT_FOUND)
+                );
 
         Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(() -> new GeneralException(EventErrorCode.CATEGORY_NOT_FOUND));
+                .orElseThrow(() ->
+                        new GeneralException(EventErrorCode.CATEGORY_NOT_FOUND)
+                );
+
+        String posterUrl = s3Service.uploadPoster(poster);
 
         Event event = Event.create(
                 member,
@@ -59,11 +72,11 @@ public class EventService {
                 request.getLocation(),
                 request.getPrice(),
                 request.getStartDate(),
-                request.getEndDate()
+                request.getEndDate(),
+                posterUrl
         );
 
-        Event savedEvent = eventRepository.save(event);
-        return EventDetailResponse.from(savedEvent);
+        return EventDetailResponse.from(eventRepository.save(event));
     }
 
 }
