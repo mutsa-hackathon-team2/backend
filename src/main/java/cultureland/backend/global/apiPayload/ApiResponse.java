@@ -2,8 +2,8 @@ package cultureland.backend.global.apiPayload;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import cultureland.backend.global.code.BaseErrorCode;
-import cultureland.backend.global.code.GeneralSuccessCode;
+import cultureland.backend.global.apiPayload.code.BaseErrorCode;
+import cultureland.backend.global.apiPayload.code.GeneralSuccessCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

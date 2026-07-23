@@ -1,6 +1,6 @@
 package cultureland.backend.event.exception;
 
-import cultureland.backend.global.code.BaseErrorCode;
+import cultureland.backend.global.apiPayload.code.BaseErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

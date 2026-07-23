@@ -1,8 +1,8 @@
-package cultureland.backend.global.code;
+package cultureland.backend.global.apiPayload.code;
 
 import org.springframework.http.HttpStatus;
 
-public interface BaseSuccessCode {
+public interface BaseErrorCode {
     HttpStatus getHttpStatus();
     String getCode();
     String getMessage();

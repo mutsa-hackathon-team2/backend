@@ -8,7 +8,7 @@ import cultureland.backend.event.dto.EventSummaryResponse;
 import cultureland.backend.event.entity.Event;
 import cultureland.backend.event.exception.EventErrorCode;
 import cultureland.backend.event.repository.EventRepository;
-import cultureland.backend.global.exception.GeneralException;
+import cultureland.backend.global.apiPayload.exception.GeneralException;
 import cultureland.backend.member.entity.Member;
 import cultureland.backend.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
